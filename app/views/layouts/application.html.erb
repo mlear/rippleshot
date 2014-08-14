@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app = "hashtag">
+  <head>
+    <title>Source</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body ng-controller="AppController" >
+    <%= yield %>
+    <%= render partial: 'partials/chart' %>
+    <section id='searchable' class='searchable'>
+      <h1>{{title}}</h1>
+      Search: <input ng-model="search">
+      <ul>
+          <li ng-repeat="tweet in tweets | filter:search | limitTo:500" ng-show="search">
+              <a href="https://twitter.com/{{tweet.username}}">{{tweet.content}} : {{tweet.username}}</a>
+          </li>
+      </ul>
+    </section>
+  </body>
+</html>
