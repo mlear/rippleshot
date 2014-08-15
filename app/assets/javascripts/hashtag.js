@@ -6,7 +6,5 @@ app.controller(
         $interval(function(){
           $scope.tweets = window.searchArray}, 500);
 
-
-
     }
 );

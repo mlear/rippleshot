@@ -35,7 +35,6 @@ $(document).ready(function () {
     var load = setInterval(getTweetsFromServer, 500);
 
     function getTweetsFromServer(){
-        console.log('number of tweets:' + window.tweetArray.length)
         $.ajax({
             type: 'get',
             url: '/tweets',
@@ -44,7 +43,6 @@ $(document).ready(function () {
                 count: (window.tweetArray.length += 100)
             },
             success: function(data){
-                console.log(data['length']);
                 killIfNoNewTweets(data);
                 cycleTweets(data);
             }
@@ -64,15 +62,12 @@ $(document).ready(function () {
     }
 
     function cycleTweets(tweets) {
-        console.log('cycleTweets ' + tweets);
-        console.log('cycling them tweets...starting at #' + tweets.length);
         for (key in tweets) {
             createTweetObject(tweets[key], key);
         }
     }
 
     function createTweetObject(tweet, index) {
-        console.log(tweet)
         aTweet = new Tweet(tweet.content, tweet.username, tweet.latitude , tweet.longitude, index);
           if (tweet.chart > "02:00AM" && tweet.chart < "03:00AM") {
             window.data[0].tweets ++;
@@ -109,7 +104,6 @@ $(document).ready(function () {
           }else if (tweet.chart > "06:00PM" && tweet.chart < "07:00PM") {
             window.data[16].tweets ++;
           }
-        console.log("this is the window data: " + window.data[0].tweets)
         window.searchArray.push(aTweet);
         window.tweetArray.push(aTweet);
             // you can create anything you want with each tweet here

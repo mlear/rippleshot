@@ -14,7 +14,6 @@ class TweetsController < ApplicationController
   def stream
     set_up_client
     hashtag = '#VacationFail'
-    p hashtag
     TweetStream::Client.new.track(hashtag) do |twitter_tweet|
       new_tweet = {
         username: twitter_tweet.user.screen_name,
