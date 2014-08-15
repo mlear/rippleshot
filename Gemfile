@@ -55,7 +55,6 @@ end
 gem 'twitter'
 gem 'sidekiq', '~> 2.17.0'
 gem 'redis'
-gem 'puma'
 gem 'rb-fsevent'
 gem 'tweetstream'
 gem "eventmachine"
