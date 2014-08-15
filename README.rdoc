@@ -4,4 +4,6 @@ This small example app is a mixture of rails, angular and D3.  I needed a datase
 
 The app may be found live on heroku at:
 
+http://rippleshot.herokuapp.com/
 
+** As of the moment, angular is giving me issues on heroku, but not on localhost.. not sure why...
