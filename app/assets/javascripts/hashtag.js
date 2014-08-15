@@ -8,3 +8,4 @@ app.controller(
 
     }
 );
+AppController.$inject = ['$scope', '$interval']
