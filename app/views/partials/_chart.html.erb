@@ -52,86 +52,48 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var data = [{timeOfTweet: "9:00pm", tweets: 10}, 
-            {timeOfTweet: "10:00pm", tweets: 6}, 
-            {timeOfTweet: "11:00pm", tweets: 9}, 
-            {timeOfTweet: "12:00am", tweets: 4}, 
-            {timeOfTweet: "1:00am", tweets: 30}, 
-            {timeOfTweet: "2:00am", tweets: 50}, 
-            {timeOfTweet: "3:00am", tweets: 2}, 
-            {timeOfTweet: "4:00am", tweets: 5}, 
-            {timeOfTweet: "5:00am", tweets: 8}, 
-            {timeOfTweet: "6:00am", tweets: 2}, 
-            {timeOfTweet: "7:00am", tweets: 23}, 
-            {timeOfTweet: "8:00am", tweets: 24}, 
-            {timeOfTweet: "9:00am", tweets: 38}, 
-            {timeOfTweet: "10:00am", tweets: 22}];
-console.log("this is the window.searchArray" + window.searchArray)
-window.searchArray.forEach(function(tweet){
-  if (tweet.chart > "02:00AM" && tweet.chart < "03:00AM") {
-    data[0]["tweets"] ++;
-  } else if (tweet.chart > "03:00AM" && tweet.chart < "04:00AM") {
-    data[1]["tweets"] ++;
-  }else if (tweet.chart > "04:00AM" && tweet.chart < "05:00AM") {
-    data[2]["tweets"] ++;
-  }else if (tweet.chart > "05:00AM" && tweet.chart < "06:00AM") {
-    data[3]["tweets"] ++;
-  }else if (tweet.chart > "06:00AM" && tweet.chart < "07:00AM") {
-    data[4]["tweets"] ++;
-  }else if (tweet.chart > "07:00AM" && tweet.chart < "08:00AM") {
-    data[5]["tweets"] ++;
-  }else if (tweet.chart > "08:00AM" && tweet.chart < "09:00AM") {
-    data[6]["tweets"] ++;
-  }else if (tweet.chart > "09:00AM" && tweet.chart < "10:00AM") {
-    data[7]["tweets"] ++;
-  }else if (tweet.chart > "10:00AM" && tweet.chart < "11:00AM") {
-    data[8]["tweets"] ++;
-  }else if (tweet.chart > "11:00AM" && tweet.chart < "12:00PM") {
-    data[9]["tweets"] ++;
-  }else if (tweet.chart > "12:00PM" && tweet.chart < "01:00PM") {
-    data[10]["tweets"] ++;
-  }else if (tweet.chart > "01:00PM" && tweet.chart < "02:00PM") {
-    data[10]["tweets"] ++;
-  }else if (tweet.chart > "02:00PM" && tweet.chart < "03:00PM") {
-    data[12]["tweets"] ++;
-  }else if (tweet.chart > "03:00PM" && tweet.chart < "04:00PM") {
-    data[13]["tweets"] ++;
-  }
-  console.log(data)
-})
 
-x.domain(data.map(function(d) { return d.timeOfTweet; }));
-y.domain([0, d3.max(data, function(d) { return d.tweets; })]);
+var data = window.data
+setInterval(function(){data = window.data}, 1000);
+setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 2000)
+setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 40000)
+setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 60000)
+setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 80000)
+setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 10000)
+setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 12000)
+function chartData(data){
+  x.domain(data.map(function(d) { return d.timeOfTweet; }));
+  y.domain([0, d3.max(data, function(d) { return d.tweets; })]);
 
-svg.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(xAxis);
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
 
-svg.append("g")
-    .attr("class", "y axis")
-    .call(yAxis)
-  .append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("y", 6)
-    .attr("dy", ".71em")
-    .style("text-anchor", "end")
-    .text("tweets");
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("tweets");
 
-svg.selectAll(".bar")
-    .data(data)
-  .enter().append("rect")
-    .attr("class", "bar")
-    .attr("x", function(d) { return x(d.timeOfTweet); })
-    .attr("width", x.rangeBand())
-    .attr("y", function(d) { return y(d.tweets); })
-    .attr("height", function(d) { return height - y(d.tweets); })
-    .on('mouseover', tip.show)
-    .on('mouseout', tip.hide)
+  svg.selectAll(".bar")
+      .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.timeOfTweet); })
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.tweets); })
+      .attr("height", function(d) { return height - y(d.tweets); })
+}
 
 function type(d) {
   d.tweets = +d.tweets;
   return d;
 }
+chartData(data)
 
 </script>
