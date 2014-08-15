@@ -1,10 +1,10 @@
 var app = angular.module( "hashtag", [] );
 
 app.controller(
-    "AppController",
+    "AppController", ["$scope", "$interval",
     function( $scope, $interval ) {
         $interval(function(){
           $scope.tweets = window.searchArray}, 500);
 
-    }
+    }]
 );
