@@ -24,7 +24,7 @@
 }
 
 </style>
-<body>
+
 <script>
 
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
@@ -55,9 +55,9 @@ var svg = d3.select("body").append("svg")
 var data = window.data
 setInterval(function(){data = window.data}, 1000);
 setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 2000)
-setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 40000)
-setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 60000)
-setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 80000)
+setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 4000)
+setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 6000)
+setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 8000)
 setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 10000)
 setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 12000)
 function chartData(data){
