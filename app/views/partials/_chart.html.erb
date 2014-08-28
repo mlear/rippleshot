@@ -19,10 +19,6 @@
   shape-rendering: crispEdges;
 }
 
-.x.axis path {
-  display: none;
-}
-
 </style>
 
 <script>
@@ -53,13 +49,15 @@ var svg = d3.select("body").append("svg")
 
 
 var data = window.data
+
 setInterval(function(){data = window.data}, 1000);
-setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 2000)
-setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 4000)
-setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 6000)
-setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 8000)
-setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 10000)
-setTimeout(function(){svg.selectAll("*").remove().remove();chartData(data)}, 12000)
+setTimeout(function(){svg.selectAll("*").remove();chartData(data)}, 2000)
+setTimeout(function(){svg.selectAll("*").remove();chartData(data)}, 4000)
+setTimeout(function(){svg.selectAll("*").remove();chartData(data)}, 6000)
+setTimeout(function(){svg.selectAll("*").remove();chartData(data)}, 8000)
+setTimeout(function(){svg.selectAll("*").remove();chartData(data)}, 10000)
+setTimeout(function(){svg.selectAll("*").remove();chartData(data)}, 12000)
+
 function chartData(data){
   x.domain(data.map(function(d) { return d.timeOfTweet; }));
   y.domain([0, d3.max(data, function(d) { return d.tweets; })]);
@@ -89,10 +87,6 @@ function chartData(data){
       .attr("height", function(d) { return height - y(d.tweets); })
 }
 
-function type(d) {
-  d.tweets = +d.tweets;
-  return d;
-}
 chartData(data)
 
 </script>
